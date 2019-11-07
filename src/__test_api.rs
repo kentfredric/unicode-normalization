@@ -1,6 +1,8 @@
 pub use crate::stream_safe::StreamSafe;
 use crate::stream_safe;
 use crate::lookups;
+use crate::normalize;
+
 pub use crate::lookups::canonical_combining_class;
 pub use crate::normalize::decompose_compatible;
 pub use crate::normalization_tests::NORMALIZATION_TESTS;
@@ -25,6 +27,10 @@ pub fn classify_nonstarters(c: char) -> Decomposition {
 }
 pub fn stream_safe(s: &str) -> String {
         StreamSafe::new(s.chars()).collect()
+}
+
+pub fn compose_hangul(a: char, b: char) -> Option<char> {
+    normalize::compose_hangul(a,b)
 }
 
 pub mod quick_check {

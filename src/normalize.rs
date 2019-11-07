@@ -120,7 +120,7 @@ pub(crate) fn hangul_decomposition_length(s: char) -> usize {
 #[allow(unsafe_code)]
 #[inline(always)]
 #[allow(ellipsis_inclusive_range_patterns)]
-fn compose_hangul(a: char, b: char) -> Option<char> {
+pub (crate) fn compose_hangul(a: char, b: char) -> Option<char> {
     let (a, b) = (a as u32, b as u32);
     match (a, b) {
         // Compose a leading consonant and a vowel together into an LV_Syllable
@@ -136,18 +136,5 @@ fn compose_hangul(a: char, b: char) -> Option<char> {
             Some(unsafe {char::from_u32_unchecked(a + (b - T_BASE))})
         },
         _ => None,
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::compose_hangul;
-
-    // Regression test from a bugfix where we were composing an LV_Syllable with
-    // T_BASE directly. (We should only compose an LV_Syllable with a character
-    // in the range `T_BASE + 1 ... T_LAST`.)
-    #[test]
-    fn test_hangul_composition() {
-        assert_eq!(compose_hangul('\u{c8e0}', '\u{11a7}'), None);
     }
 }
