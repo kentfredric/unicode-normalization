@@ -26,3 +26,7 @@ pub fn classify_nonstarters(c: char) -> Decomposition {
 pub fn stream_safe(s: &str) -> String {
         StreamSafe::new(s.chars()).collect()
 }
+
+pub mod quick_check {
+    pub use crate::quick_check::*;
+}

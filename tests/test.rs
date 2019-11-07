@@ -1,3 +1,4 @@
+
 // Copyright 2012-2015 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
@@ -9,9 +10,11 @@
 // except according to those terms.
 
 
+extern crate unicode_normalization;
+
 use std::char;
-use super::UnicodeNormalization;
-use super::char::is_combining_mark;
+use unicode_normalization::UnicodeNormalization;
+use unicode_normalization::char::is_combining_mark;
 
 
 #[test]
@@ -97,7 +100,7 @@ fn test_nfkc() {
 
 #[test]
 fn test_official() {
-    use normalization_tests::NORMALIZATION_TESTS;
+    use unicode_normalization::__test_api::NORMALIZATION_TESTS;
     macro_rules! normString {
         ($method: ident, $input: expr) => { $input.$method().collect::<String>() }
     }
@@ -161,8 +164,8 @@ fn test_official() {
 
 #[test]
 fn test_quick_check() {
-    use normalization_tests::NORMALIZATION_TESTS;
-    use quick_check;
+    use unicode_normalization::__test_api::NORMALIZATION_TESTS;
+    use unicode_normalization::__test_api::quick_check;
     for test in NORMALIZATION_TESTS {
         assert!(quick_check::is_nfc(test.nfc));
         assert!(quick_check::is_nfd(test.nfd));
