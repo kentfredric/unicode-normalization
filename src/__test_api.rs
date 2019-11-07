@@ -6,7 +6,6 @@
 
 pub use crate::stream_safe::StreamSafe;
 use crate::stream_safe;
-use crate::lookups;
 use crate::normalize;
 
 pub use crate::lookups::canonical_combining_class;
