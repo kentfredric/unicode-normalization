@@ -4,8 +4,9 @@ use unicode_normalization::__test_api::{
     canonical_combining_class,
     decompose_compatible,
     stream_safe,
-    NORMALIZATION_TESTS
 };
+mod normalization_tests;
+use normalization_tests::NORMALIZATION_TESTS;
 use std::char;
 
 #[test]

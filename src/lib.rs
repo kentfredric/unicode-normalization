@@ -73,7 +73,6 @@ mod quick_check;
 mod stream_safe;
 mod tables;
 
-mod normalization_tests;
 #[doc(hidden)]
 pub mod __test_api;
 

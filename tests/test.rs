@@ -15,7 +15,8 @@ extern crate unicode_normalization;
 use std::char;
 use unicode_normalization::UnicodeNormalization;
 use unicode_normalization::char::is_combining_mark;
-
+mod normalization_tests;
+use normalization_tests::NORMALIZATION_TESTS;
 
 #[test]
 fn test_nfd() {
@@ -100,7 +101,6 @@ fn test_nfkc() {
 
 #[test]
 fn test_official() {
-    use unicode_normalization::__test_api::NORMALIZATION_TESTS;
     macro_rules! normString {
         ($method: ident, $input: expr) => { $input.$method().collect::<String>() }
     }
@@ -164,7 +164,6 @@ fn test_official() {
 
 #[test]
 fn test_quick_check() {
-    use unicode_normalization::__test_api::NORMALIZATION_TESTS;
     use unicode_normalization::__test_api::quick_check;
     for test in NORMALIZATION_TESTS {
         assert!(quick_check::is_nfc(test.nfc));
